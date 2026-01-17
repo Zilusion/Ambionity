@@ -41,6 +41,9 @@ jobs:
       - name: Security Audit
         run: pnpm audit --prod
 
+      - name: Generate Paraglide files
+        run: pnpm paraglide:generate
+
       - name: Typecheck
         run: pnpm typecheck
 
