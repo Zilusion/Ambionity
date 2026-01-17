@@ -6,6 +6,8 @@ RUN npm install -g pnpm
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
+COPY .husky ./.husky
+
 RUN pnpm install --frozen-lockfile
 RUN npm rebuild better-sqlite3
 
@@ -24,6 +26,7 @@ RUN npm install -g pnpm
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
+COPY .husky ./.husky
 
 RUN pnpm install --prod --frozen-lockfile
 
