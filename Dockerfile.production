@@ -14,7 +14,6 @@ RUN npm rebuild better-sqlite3
 COPY . .
 
 RUN pnpm db:generate
-
 RUN pnpm build
 
 
@@ -24,6 +23,8 @@ RUN apk add --no-cache python3 make g++
 RUN npm install -g pnpm
 
 WORKDIR /app
+
+ENV NODE_ENV=production
 
 COPY package.json pnpm-lock.yaml ./
 COPY .husky ./.husky
@@ -41,7 +42,6 @@ COPY --from=builder /app/scripts ./scripts
 
 RUN mkdir -p .data
 
-ENV NODE_ENV=production
 ENV PORT=3000
 ENV DATABASE_URL=file:/app/.data/prod.db
 
