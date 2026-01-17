@@ -1,0 +1,55 @@
+services:
+  app-development:
+    profiles: ['development']
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    container_name: ambionity-development
+    restart: always
+    ports:
+      - '5173:5173'
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=file:/app/.data/local.db
+    volumes:
+      - sqlite_data_dev:/app/.data
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - node_modules
+            - .svelte-kit
+            - build
+            - .data
+            - .git
+        - action: rebuild
+          path: ./package.json
+        - action: rebuild
+          path: ./pnpm-lock.yaml
+        - action: rebuild
+          path: ./pnpm-workspace.yaml
+
+  app-production:
+    profiles: ['production']
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    container_name: ambionity-production
+    restart: always
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    environment:
+      - ORIGIN=http://localhost:3000
+      - DATABASE_URL=file:/app/.data/prod.db
+    volumes:
+      - sqlite_data_prod:/app/.data
+
+volumes:
+  sqlite_data_dev:
+  sqlite_data_prod:
