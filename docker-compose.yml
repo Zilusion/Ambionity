@@ -30,8 +30,6 @@ services:
           path: ./package.json
         - action: rebuild
           path: ./pnpm-lock.yaml
-        - action: rebuild
-          path: ./pnpm-workspace.yaml
 
   app-production:
     profiles: ['production']
