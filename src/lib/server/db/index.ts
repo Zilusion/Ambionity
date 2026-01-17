@@ -5,6 +5,7 @@ import { env } from '$env/dynamic/private';
 
 if (!env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
 
-const client = new Database(env.DATABASE_URL);
+const dbPath = env.DATABASE_URL.replace(/^file:/, '');
+const client = new Database(dbPath);
 
 export const db = drizzle(client, { schema });

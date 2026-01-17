@@ -12,7 +12,7 @@ services:
       - .env
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=file:/app/.data/local.db
+      - DATABASE_URL=/app/.data/local.db
     volumes:
       - sqlite_data_dev:/app/.data
     develop:
@@ -44,7 +44,7 @@ services:
       - .env
     environment:
       - ORIGIN=http://localhost:3000
-      - DATABASE_URL=file:/app/.data/prod.db
+      - DATABASE_URL=/app/.data/prod.db
     volumes:
       - sqlite_data_prod:/app/.data
 

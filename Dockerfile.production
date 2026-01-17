@@ -11,7 +11,11 @@ COPY .husky ./.husky
 RUN pnpm install --frozen-lockfile
 RUN npm rebuild better-sqlite3
 
+RUN pnpm exec svelte-kit sync
+
 COPY . .
+
+ENV DATABASE_URL=":memory:"
 
 RUN pnpm db:generate
 RUN pnpm build
@@ -43,7 +47,7 @@ COPY --from=builder /app/scripts ./scripts
 RUN mkdir -p .data
 
 ENV PORT=3000
-ENV DATABASE_URL=file:/app/.data/prod.db
+ENV DATABASE_URL=/app/.data/prod.db
 
 EXPOSE 3000
 
