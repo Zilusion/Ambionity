@@ -1,5 +1,25 @@
 {
 	"files.associations": {
 		"*.css": "tailwindcss"
+	},
+	"explorer.fileNesting.enabled": true,
+	"explorer.fileNesting.expand": false,
+
+	"explorer.fileNesting.patterns": {
+		// ───────── SvelteKit routes ─────────
+		"+layout.svelte": "+layout.ts,+layout.js,+layout.server.ts,+layout.server.js",
+		"+page.svelte": "+page.ts,+page.js,+page.server.ts,+page.server.js",
+
+		// ───────── Tooling ─────────
+		"package.json": ".npmrc, pnpm-lock.yaml, .prettier*, prettier.config.*, commitlint.config.*, drizzle.config.*, knip.config.*, lint-staged.config.*, .editorconfig, eslint.config.*, .eslintrc*, .stylelintrc*, .lintstagedrc*, tsconfig.json, tsconfig.*.json, vite.config.ts, vite.config.wc.ts, svelte.config.js, svelte.config.ts, postcss.config.*, tailwind.config.*, mdsvex.config.js, .storybook/*, .husky/*, scripts/*, vitest.setup.ts, vitest-setup-client.ts, vitest.shims.d.ts, commitlint.config.js, commitline.config.js, nginx.conf",
+
+		// ───────── Git ─────────
+		".gitignore": ".gitattributes, .gitmodules",
+
+		// ───────── Docker ─────────
+		"Dockerfile.development": "Dockerfile.production, .dockerignore, docker-compose.*",
+
+		// ───────── Controllers ─────────
+		"*.controller.ts": "$(capture).action.ts, $(capture).svelte.ts"
 	}
 }
