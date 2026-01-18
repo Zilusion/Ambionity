@@ -25,7 +25,7 @@
 		"db:studio": "drizzle-kit studio",
 		"copy:all": "bash scripts/copy-all.sh",
 		"knip": "knip",
-		"release": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md\" --commit --tag --push",
+		"release": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md\" --commit --tag --push --all",
 		"paraglide:generate": "paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide"
 	},
 	"devDependencies": {
