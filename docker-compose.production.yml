@@ -4,13 +4,13 @@ services:
     container_name: ambionity-production
     restart: always
     ports:
-      - '127.0.0.1:3000:3000'
+      - '127.0.0.1:${PORT_PROD}:3000'
     env_file:
       - .env
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=file:/app/.data/prod.db
-      - ORIGIN=https://ambionity.sudorgin.com
+      - DATABASE_URL=${DATABASE_URL_PROD}
+      - ORIGIN=${ORIGIN_PROD}
     volumes:
       - sqlite_data_prod:/app/.data
 
@@ -19,13 +19,13 @@ services:
     container_name: ambionity-edge
     restart: always
     ports:
-      - '127.0.0.1:3001:3000'
+      - '127.0.0.1:${PORT_EDGE}:3000'
     env_file:
       - .env
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=file:/app/.data/edge.db
-      - ORIGIN=https://dev.ambionity.sudorgin.com
+      - DATABASE_URL=${DATABASE_URL_EDGE}
+      - ORIGIN=${ORIGIN_EDGE}
     volumes:
       - sqlite_data_edge:/app/.data
 
